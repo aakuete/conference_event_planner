@@ -83,18 +83,18 @@ const ConferenceEvent = () => {
         console.log(items);
         return <>
             <div className="display_box1">
-                {items.length === 0 && <p>No items selected</p>}
-                <table className="table_item_data">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Unit Cost</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items.map((item, index) => (
+            {items.length === 0 && <p>No items selected</p>}
+            <table className="table_item_data">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Unit Cost</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map((item, index) => (
                         <tr key={index}>
                             <td>{item.name}</td>
                             <td>${item.cost}</td>
@@ -104,33 +104,33 @@ const ConferenceEvent = () => {
                                 : item.quantity}
                             </td>
                             <td>{item.type === "meals" || item.numberOfPeople
-                            ? '${item.cost * numberOfPeople}'
-                            : '${item.cost * item.quantity}'}
+                                ? `${item.cost * numberOfPeople}`
+                                : `${item.cost * item.quantity}`}
                             </td>
                         </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </>
     };
 
     const calculateTotalCost = (section) => {
         let totalCost = 0;
         if (section === "venue") {
-          venueItems.forEach((item) => {
-            totalCost += item.cost * item.quantity;
-          });
-        } else if (section === "av"){
+            venueItems.forEach((item) => {
+                totalCost += item.cost * item.quantity;
+            });
+        } else if (section === "av") {
             avItems.forEach((item) => {
                 totalCost += item.cost * item.quantity;
             });
-        } else if (section === "meals"){
+        } else if (section === "meals") {
             mealsItems.forEach((item) => {
-                if (item.selected){
-                    totalCost += item.cost * numberOfPeople;
+                if (item.selected) {
+                  totalCost += item.cost * numberOfPeople;
                 }
-            });
+              });
         }
         return totalCost;
       };
@@ -244,18 +244,18 @@ const ConferenceEvent = () => {
                                 </div>
                                 <div className="addons_selection">
                                 {avItems.map((item, index) => (
-                                <div className="av_data venue_main" key={index}>
-                                    <div className="img">
-                                        <img src={item.img} alt={item.name} />
-                                    </div>
+                                    <div className="av_data venue_main" key={index}>
+                                        <div className="img">
+                                            <img src={item.img} alt={item.name} />
+                                        </div>
                                     <div className="text"> {item.name} </div>
                                     <div> ${item.cost} </div>
                                         <div className="addons_btn">
                                             <button className="btn-warning" onClick={() => handleDecrementAvQuantity(index)}> &ndash; </button>
-                                            <span className="quantity-value">{item.quantity}</span>
+                                             <span className="quantity-value">{item.quantity}</span>
                                             <button className=" btn-success" onClick={() => handleIncrementAvQuantity(index)}> &#43; </button>
+                                        </div>
                                     </div>
-                                </div>
 ))}
                                 </div>
                                 <div className="total_cost">Total Cost: {avTotalCost}</div>
