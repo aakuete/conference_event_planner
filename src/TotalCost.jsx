@@ -16,7 +16,7 @@ const total_amount = totalCosts.venue + totalCosts.av + totalCosts.meals;
           </h2>
          
             <div className="render_items">
-                <ItemsDisplay/>
+                <ItemsDisplay />
             </div>
         </div>
       </div>
